@@ -106,7 +106,6 @@ export default function Modal({
                   className="form-control"
                   id="message-text-genero"
                   name='genero'
-                  // Asegurarse de que media.genero existe antes de intentar acceder a su id
                   onChange={handleChange}
                   value={media.genero ? media.genero.id : ''}
                 />
@@ -118,7 +117,6 @@ export default function Modal({
                   className="form-control"
                   id="message-text-director"
                   name='director'
-                  // Asegurarse de que media.director existe antes de intentar acceder a su id
                   onChange={handleChange}
                   value={media.director ? media.director.id : ''}
                 />
@@ -130,7 +128,6 @@ export default function Modal({
                   className="form-control"
                   id="message-text-productora"
                   name='productora'
-                  // Asegurarse de que media.productora existe antes de intentar acceder a su id
                   onChange={handleChange}
                   value={media.productora ? media.productora.id : ''}
                 />
@@ -142,7 +139,6 @@ export default function Modal({
                   className="form-control"
                   id="message-text-tipo"
                   name='tipo'
-                  // Asegurarse de que media.tipo existe antes de intentar acceder a su id
                   onChange={handleChange}
                   value={media.tipo ? media.tipo.id : ''}
                 />

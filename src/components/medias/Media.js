@@ -207,7 +207,7 @@ export default function Media() {
                     change={handleChange}
                     guardar={guardar}
                     clearForm={clearForm}
-                    editing={editing} // Pasamos el estado de edición al modal
+                    editing={editing}
                 />
             </>
         );
