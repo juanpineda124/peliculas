@@ -6,30 +6,78 @@ import Table from './Table';
 import ButtonModal from '../ui/ButtonModal';
 import Spinner from '../ui/Spinner';
 import Swal from 'sweetalert2';
+import { obtenerGeneros } from '../../services/GeneroService.js';
+import { obtenerDirectores } from '../../services/DirectorService.js';
+import { obtenerProductoras } from '../../services/ProductoraServices.js';
+import { obtenerTipos } from '../../services/TipoService.js';
 
 export default function Media() {
 
-        const [medias, setMedias] = useState([]);
-        const [loader, setLoader] = useState(false);
-        const [editing, setEditing] = useState(false); // Nuevo estado para manejar la edición
-        const [mediaEdit, setMediaEdit] = useState(null); // Media seleccionada para editar
-    
-        const [media, setMedia] = useState({
-            serial: '',
-            titulo: '',
-            sinopsis: '',
-            url: '',
-            imagen: '',
-            añoEstreno: '',
-            genero: '',
-            director: '',
-            productora: '',
-            tipo: ''
-        });
-    
-        useEffect(() => {
-            listarMedias();
-        }, []);
+    const [medias, setMedias] = useState([]);
+    const [generos, setGeneros] = useState([]); // Estado para almacenar los géneros
+    const [directores, setDirectores] = useState([]);
+    const [productoras, setProductoras] = useState([]);
+    const [tipos, setTipos] = useState([]);
+    const [loader, setLoader] = useState(false);
+    const [editing, setEditing] = useState(false);
+    const [mediaEdit, setMediaEdit] = useState(null);
+
+    const [media, setMedia] = useState({
+        serial: '',
+        titulo: '',
+        sinopsis: '',
+        url: '',
+        imagen: '',
+        añoEstreno: '',
+        genero: '',  // Será un id
+        director: '',
+        productora: '',
+        tipo: ''
+    });
+
+    useEffect(() => {
+        listarMedias();
+        listarGeneros(); // Llamar a la función que carga los géneros
+        listarDirectores();
+        listarProductoras();
+        listarTipos();
+    }, []);
+
+    const listarGeneros = async () => {
+        try {
+            const { data } = await obtenerGeneros(); // Llamada a la API para obtener los géneros
+            setGeneros(data); // Guardar géneros en el estado
+        } catch (e) {
+            console.error(e);
+        }
+    };
+
+    const listarDirectores = async () => {
+        try {
+            const { data } = await obtenerDirectores(); 
+            setDirectores(data); 
+        } catch (e) {
+            console.error(e);
+        }
+    };
+
+    const listarProductoras = async () => {
+        try {
+            const { data } = await obtenerProductoras(); 
+            setProductoras(data); 
+        } catch (e) {
+            console.error(e);
+        }
+    };
+
+    const listarTipos = async () => {
+        try {
+            const { data } = await obtenerTipos(); 
+            setTipos(data); 
+        } catch (e) {
+            console.error(e);
+        }
+    };
     
         const listarMedias = async () => {
             setLoader(true);
@@ -208,6 +256,10 @@ export default function Media() {
                     guardar={guardar}
                     clearForm={clearForm}
                     editing={editing}
+                    generos={generos} 
+                    directores={directores} 
+                    productoras={productoras} 
+                    tipos={tipos}
                 />
             </>
         );

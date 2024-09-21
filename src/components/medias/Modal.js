@@ -5,7 +5,11 @@ export default function Modal({
   change, 
   guardar, 
   clearForm, 
-  editing 
+  editing,
+  generos,  // Recibimos los géneros
+  directores,
+  productoras,
+  tipos
 }) {
   const handleChange = e => {
     change(e);
@@ -100,49 +104,73 @@ export default function Modal({
                 />
               </div>
               <div className="mb-3">
-                <label htmlFor="message-text-genero" className="col-form-label">Genero:</label>
-                <input
-                  type="text"
+                <label htmlFor="message-text-genero" className="col-form-label">Género:</label>
+                <select
                   className="form-control"
                   id="message-text-genero"
-                  name='genero'
+                  name="genero"
                   onChange={handleChange}
-                  value={media.genero ? media.genero.id : ''}
-                />
+                  value={media.genero}  // Asignamos el id del género seleccionado
+                >
+                  <option value="" disabled>Selecciona un género</option>
+                  {generos.map(genero => (
+                    <option key={genero._id} value={genero._id}>
+                      {genero.nombre}  {/* Ajusta el campo según cómo se llame en tu API */}
+                    </option>
+                  ))}
+                </select>
               </div>
               <div className="mb-3">
                 <label htmlFor="message-text-director" className="col-form-label">Director:</label>
-                <input
-                  type="text"
+                <select
                   className="form-control"
                   id="message-text-director"
-                  name='director'
+                  name="director"
                   onChange={handleChange}
-                  value={media.director ? media.director.id : ''}
-                />
-              </div>
-              <div className="mb-3">
+                  value={media.director}  
+                >
+                  <option value="" disabled>Selecciona un director</option>
+                  {directores.map(director => (
+                    <option key={director._id} value={director._id}>
+                      {director.nombre} 
+                    </option>
+                  ))}
+                </select>
+                </div>
+                <div className="mb-3">
                 <label htmlFor="message-text-productora" className="col-form-label">Productora:</label>
-                <input
-                  type="text"
+                <select
                   className="form-control"
                   id="message-text-productora"
-                  name='productora'
+                  name="productora"
                   onChange={handleChange}
-                  value={media.productora ? media.productora.id : ''}
-                />
-              </div>
-              <div className="mb-3">
+                  value={media.productora}  
+                >
+                  <option value="" disabled>Selecciona una productora</option>
+                  {productoras.map(productora => (
+                    <option key={productora._id} value={productora._id}>
+                      {productora.nombre} 
+                    </option>
+                  ))}
+                </select>
+                </div>
+                <div className="mb-3">
                 <label htmlFor="message-text-tipo" className="col-form-label">Tipo:</label>
-                <input
-                  type="text"
+                <select
                   className="form-control"
                   id="message-text-tipo"
-                  name='tipo'
+                  name="tipo"
                   onChange={handleChange}
-                  value={media.tipo ? media.tipo.id : ''}
-                />
-              </div>
+                  value={media.tipo}  
+                >
+                  <option value="" disabled>Selecciona un tipo</option>
+                  {tipos.map(tipo => (
+                    <option key={tipo._id} value={tipo._id}>
+                      {tipo.nombre} 
+                    </option>
+                  ))}
+                </select>
+                </div>
               <div className="modal-footer">
                 <button 
                   type="button" 
