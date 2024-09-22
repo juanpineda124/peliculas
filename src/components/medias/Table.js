@@ -43,13 +43,20 @@ export default function Table({
                 <td>{serial}</td>
                 <td>{titulo}</td>
                 <td>{sinopsis}</td>
-                <td>{url}</td>
+                <td>
+                  <a  href={url} 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      style={{ color: 'red', textDecoration: 'underline' }}>
+                    {url}
+                  </a>
+                </td>
                 <td>
                   {imagen ? (
                     <img 
                       src={imagen} 
                       alt={titulo} 
-                      style={{ width: '50px', height: '50px', objectFit: 'cover' }} 
+                      style={{ width: '100px', height: '100px', objectFit: 'cover' }} 
                     />
                   ) : (
                     'No imagen'
