@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 export default function Modal({ 
   media, 
@@ -6,13 +6,25 @@ export default function Modal({
   guardar, 
   clearForm, 
   editing,
-  generos,  // Recibimos los géneros
+  generos,  
   directores,
   productoras,
   tipos
 }) {
-  const handleChange = e => {
+  const [imagePreview, setImagePreview] = useState('');
+
+  useEffect(() => {
+    // Actualizar la vista previa de la imagen cuando el campo 'imagen' cambie
+    setImagePreview(media.imagen);
+  }, [media.imagen]);
+
+  const handleChange = (e) => {
     change(e);
+
+    // Si se cambia la URL de la imagen, actualizar la vista previa
+    if (e.target.name === 'imagen') {
+      setImagePreview(e.target.value);
+    }
   };
 
   const guardarMedia = (e) => {
@@ -22,6 +34,7 @@ export default function Modal({
 
   const clear = () => {
     clearForm();
+    setImagePreview(''); // Limpiar la vista previa de la imagen
   };
 
   return (
@@ -90,6 +103,16 @@ export default function Modal({
                   onChange={handleChange}
                   value={media.imagen || ''}
                 />
+                {/* Vista previa de la imagen */}
+                {imagePreview && (
+                  <div className="mt-3">
+                    <img 
+                      src={imagePreview} 
+                      alt="Vista previa" 
+                      style={{ maxWidth: '100%', maxHeight: '300px' }} 
+                    />
+                  </div>
+                )}
               </div>
               <div className="mb-3">
                 <label htmlFor="message-text-añoEstreno" className="col-form-label">Año estreno:</label>

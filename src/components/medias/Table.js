@@ -44,7 +44,17 @@ export default function Table({
                 <td>{titulo}</td>
                 <td>{sinopsis}</td>
                 <td>{url}</td>
-                <td>{imagen}</td>
+                <td>
+                  {imagen ? (
+                    <img 
+                      src={imagen} 
+                      alt={titulo} 
+                      style={{ width: '50px', height: '50px', objectFit: 'cover' }} 
+                    />
+                  ) : (
+                    'No imagen'
+                  )}
+                </td>
                 <td>{fechaCreacion}</td>
                 <td>{fechaModificacion}</td>
                 <td>{añoEstreno}</td>
