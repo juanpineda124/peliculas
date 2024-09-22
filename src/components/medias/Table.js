@@ -15,7 +15,7 @@ export default function Table({ medias = [], borrarMediaPorId, cargarMedia }) {
   };
 
   const thTdStyles = {
-    maxWidth: '200px', // Establece un ancho máximo para las celdas
+    maxWidth: '300px', // Establece un ancho máximo para las celdas
     overflow: 'hidden', // Oculta el desbordamiento
     textOverflow: 'ellipsis', // Añade '...' al final del texto que se corta
     whiteSpace: 'nowrap', // Evita que el texto se rompa en varias líneas
@@ -31,6 +31,7 @@ export default function Table({ medias = [], borrarMediaPorId, cargarMedia }) {
   };
 
   const sinopsisLimit = 100; // Límite de caracteres para mostrar el botón "Ver más"
+  
 
   return (
     <div style={tableStyles}>
@@ -59,7 +60,9 @@ export default function Table({ medias = [], borrarMediaPorId, cargarMedia }) {
               <tr key={_id}>
                 <th scope="row">{index + 1}</th>
                 <td style={thTdStyles}>{serial}</td>
-                <td style={thTdStyles}>{titulo}</td>
+                <td style={{ ...thTdStyles, whiteSpace: 'normal', wordWrap: 'break-word', overflow: 'hidden' }}>
+                  {titulo}
+                </td>
                 <td style={{ ...thTdStyles, overflow: 'visible', whiteSpace: 'normal' }}>
                   <div style={{ maxHeight: expandedRows[_id] ? 'none' : '50px', overflow: 'hidden' }}>
                     {sinopsis}
@@ -80,7 +83,7 @@ export default function Table({ medias = [], borrarMediaPorId, cargarMedia }) {
                 </td>
                 <td style={thTdStyles}>
                   {imagen ? (
-                    <img src={imagen} alt={titulo} style={{ width: '100px', height: '100px', objectFit: 'cover' }} />
+                    <img src={imagen} alt={titulo} style={{ width: '120px', height: '120px', objectFit: 'cover' }} />
                   ) : (
                     'No imagen'
                   )}
