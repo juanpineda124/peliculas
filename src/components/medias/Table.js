@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-export default function MediaDisplay({ medias = [], borrarMediaPorId, cargarMedia }) {
+export default function Table({ medias = [], borrarMediaPorId, cargarMedia }) {
   const [expandedRows, setExpandedRows] = useState({});
   const [vista, setVista] = useState('tabla'); // Estado para alternar entre tabla y cuadricula
 
