@@ -77,7 +77,7 @@ export default function Table({ medias = [], borrarMediaPorId, cargarMedia }) {
     <div>
       {/* Botón para alternar entre tabla y cuadrícula */}
       <div style={{ marginBottom: '20px' }}>
-        <button onClick={toggleVista} className="btn btn-primary">
+        <button onClick={toggleVista} className="btn btn-outline-secondary">
           Cambiar a {vista === 'tabla' ? 'Cuadrícula' : 'Tabla'}
         </button>
       </div>
@@ -347,7 +347,7 @@ export default function Table({ medias = [], borrarMediaPorId, cargarMedia }) {
                     data-id={_id}
                     type="button"
                     className="btn btn-danger"
-                    onClick={borrarPorId} // Ajuste para que se ejecute correctamente
+                    onClick={borrarPorId} 
                   >
                     Eliminar
                   </button>
