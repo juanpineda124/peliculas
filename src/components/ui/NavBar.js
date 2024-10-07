@@ -7,7 +7,7 @@ export default function NavBar() {
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
   <div className="container-fluid">
     <Link
-      to='/'
+      to='/medias'
       tabIndex={0}
       className= "nav-brand"
       aria-label='Ir a inicio'     
